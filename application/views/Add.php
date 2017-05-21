@@ -14,23 +14,30 @@
 					var fname = $("#fname").val();
 					var mname = $("#mname").val();
 					var lname = $("#lname").val();
-					$.ajax({
-						url: "/index.php/crud/add",
-			        	type: "POST",
-			        	data: {
-			        		fname:fname, mname:mname, lname:lname
-			        	},
-			        	dataType: "json",
-			        	success: function(data)
-			        	{
-			        		bootbox.alert("New Item Successfully Added!");
-			        		window.location.assign("/index.php/crud/");
-			        	},
-						error: function (XMLHttpRequest, textStatus, errorThrown)
-           				{ 
-           					bootbox.alert("Error Occured!");
-           				}
-			   		});
+					if (fname == "" || lname == "")
+					{
+						bootbox.alert("Please enter your first name and last name.");
+					}
+					else
+					{
+						$.ajax({
+							url: "/index.php/crud/add",
+				        	type: "POST",
+				        	data: {
+				        		fname:fname, mname:mname, lname:lname
+				        	},
+				        	dataType: "json",
+				        	success: function(data)
+				        	{
+				        		bootbox.alert("New Item Successfully Added!");
+				        		//window.location.assign("/index.php/crud/");
+				        	},
+							error: function (XMLHttpRequest, textStatus, errorThrown)
+	           				{ 
+	           					bootbox.alert("Error Occured!");
+	           				}
+				   		});
+					}
 				});
 			});
 		</script>
